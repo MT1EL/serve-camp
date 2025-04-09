@@ -1,52 +1,96 @@
-import type { Schema, Struct } from '@strapi/strapi';
+import type { Schema, Struct } from "@strapi/strapi";
 
 export interface BlocksFeaturedArticle extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_featured_articles';
+  collectionName: "components_blocks_featured_articles";
   info: {
-    displayName: 'Featured Article';
+    displayName: "Featured Article";
   };
   attributes: {
     excerpt: Schema.Attribute.RichText;
     headline: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.Component<'elements.link', false>;
+    image: Schema.Attribute.Media<"images">;
+    link: Schema.Attribute.Component<"elements.link", false>;
+  };
+}
+
+export interface BlocksFullImage extends Struct.ComponentSchema {
+  collectionName: "components_blocks_full_images";
+  info: {
+    displayName: "Full image";
+  };
+  attributes: {
+    image: Schema.Attribute.Media<"images">;
+  };
+}
+
+export interface BlocksHeading extends Struct.ComponentSchema {
+  collectionName: "components_blocks_headings";
+  info: {
+    displayName: "Heading";
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    linkid: Schema.Attribute.String;
   };
 }
 
 export interface BlocksHeroSection extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_hero_sections';
+  collectionName: "components_blocks_hero_sections";
   info: {
-    displayName: 'Hero Section';
+    displayName: "Hero Section";
   };
   attributes: {
-    cta: Schema.Attribute.Component<'elements.link', false>;
+    cta: Schema.Attribute.Component<"elements.link", false>;
     heading: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    logo: Schema.Attribute.Component<'elements.logo', false>;
-    theme: Schema.Attribute.Enumeration<['turquoise', 'orange']>;
+    image: Schema.Attribute.Media<"images">;
+    logo: Schema.Attribute.Component<"elements.logo", false>;
+    theme: Schema.Attribute.Enumeration<["turquoise", "orange"]>;
   };
 }
 
 export interface BlocksInfoBlock extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_info_blocks';
+  collectionName: "components_blocks_info_blocks";
   info: {
-    description: '';
-    displayName: 'Info Block';
+    description: "";
+    displayName: "Info Block";
   };
   attributes: {
     content: Schema.Attribute.RichText;
-    cta: Schema.Attribute.Component<'elements.link', false>;
+    cta: Schema.Attribute.Component<"elements.link", false>;
     headline: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<"images">;
     isReversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    theme: Schema.Attribute.Enumeration<['turquoise', 'orange']>;
+    theme: Schema.Attribute.Enumeration<["turquoise", "orange"]>;
+  };
+}
+
+export interface BlocksParagraph extends Struct.ComponentSchema {
+  collectionName: "components_blocks_paragraphs";
+  info: {
+    displayName: "Paragraph";
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksParagraphWithImage extends Struct.ComponentSchema {
+  collectionName: "components_blocks_paragraph_with_images";
+  info: {
+    displayName: "Paragraph With Image";
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<"images">;
+    imageLandscape: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
   };
 }
 
 export interface BlocksSubscribe extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_subscribes';
+  collectionName: "components_blocks_subscribes";
   info: {
-    displayName: 'Subscribe';
+    displayName: "Subscribe";
   };
   attributes: {
     buttonText: Schema.Attribute.String;
@@ -57,10 +101,10 @@ export interface BlocksSubscribe extends Struct.ComponentSchema {
 }
 
 export interface ElementsLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_links';
+  collectionName: "components_elements_links";
   info: {
-    description: '';
-    displayName: 'link';
+    description: "";
+    displayName: "link";
   };
   attributes: {
     href: Schema.Attribute.String;
@@ -70,52 +114,56 @@ export interface ElementsLink extends Struct.ComponentSchema {
 }
 
 export interface ElementsLogo extends Struct.ComponentSchema {
-  collectionName: 'components_elements_logos';
+  collectionName: "components_elements_logos";
   info: {
-    displayName: 'Logo';
+    displayName: "Logo";
   };
   attributes: {
-    image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<"images">;
     logoText: Schema.Attribute.String;
   };
 }
 
 export interface LayoutFooter extends Struct.ComponentSchema {
-  collectionName: 'components_layout_footers';
+  collectionName: "components_layout_footers";
   info: {
-    displayName: 'Footer';
+    displayName: "Footer";
   };
   attributes: {
     copy: Schema.Attribute.String;
-    logo: Schema.Attribute.Component<'elements.logo', false>;
-    navigation: Schema.Attribute.Component<'elements.link', true>;
-    policies: Schema.Attribute.Component<'elements.link', true>;
+    logo: Schema.Attribute.Component<"elements.logo", false>;
+    navigation: Schema.Attribute.Component<"elements.link", true>;
+    policies: Schema.Attribute.Component<"elements.link", true>;
   };
 }
 
 export interface LayoutHeader extends Struct.ComponentSchema {
-  collectionName: 'components_layout_headers';
+  collectionName: "components_layout_headers";
   info: {
-    displayName: 'Header';
+    displayName: "Header";
   };
   attributes: {
-    cta: Schema.Attribute.Component<'elements.link', false>;
-    logo: Schema.Attribute.Component<'elements.logo', false>;
-    navigation: Schema.Attribute.Component<'elements.link', true>;
+    cta: Schema.Attribute.Component<"elements.link", false>;
+    logo: Schema.Attribute.Component<"elements.logo", false>;
+    navigation: Schema.Attribute.Component<"elements.link", true>;
   };
 }
 
-declare module '@strapi/strapi' {
+declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
-      'blocks.featured-article': BlocksFeaturedArticle;
-      'blocks.hero-section': BlocksHeroSection;
-      'blocks.info-block': BlocksInfoBlock;
-      'blocks.subscribe': BlocksSubscribe;
-      'elements.link': ElementsLink;
-      'elements.logo': ElementsLogo;
-      'layout.footer': LayoutFooter;
-      'layout.header': LayoutHeader;
+      "blocks.featured-article": BlocksFeaturedArticle;
+      "blocks.full-image": BlocksFullImage;
+      "blocks.heading": BlocksHeading;
+      "blocks.hero-section": BlocksHeroSection;
+      "blocks.info-block": BlocksInfoBlock;
+      "blocks.paragraph": BlocksParagraph;
+      "blocks.paragraph-with-image": BlocksParagraphWithImage;
+      "blocks.subscribe": BlocksSubscribe;
+      "elements.link": ElementsLink;
+      "elements.logo": ElementsLogo;
+      "layout.footer": LayoutFooter;
+      "layout.header": LayoutHeader;
     }
   }
 }
