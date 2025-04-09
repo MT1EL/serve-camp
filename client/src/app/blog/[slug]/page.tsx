@@ -5,7 +5,7 @@ import { getContentBySlug } from "@/data/loaders";
 
 import { HeroSection } from "@/components/blocks/HeroSection";
 import { BlockRenderer } from "@/components/BlockRenderer";
-import { Card, type CardProps } from "@/components/Card";
+import { Card, type CardProps } from "@/components/card";
 import { ContentList } from "@/components/layout/ContentList";
 import Link from "next/link";
 
